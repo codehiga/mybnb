@@ -9,7 +9,7 @@ export const Acomodacoes = () => {
     <div className="grid md:grid-cols-3 w-full gap-4 gap-y-8 pb-8">
       {acomodacoes?.map((acomodacao) => {
         return (
-          <div className="flex flex-col">
+          <div key={acomodacao.id} className="flex flex-col">
             <Link href={"/acomodacoes/" + acomodacao.id}>
               <div className="w-full h-80 overflow-hidden rounded-md cursor-pointer">
                 <Image
