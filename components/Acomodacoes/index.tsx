@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useAcomodacoes } from "../../hooks/useAcomodacoes";
 
@@ -11,7 +12,9 @@ export const Acomodacoes = () => {
           <div className="flex flex-col">
             <Link href={"/acomodacoes/" + acomodacao.id}>
               <div className="w-full h-80 overflow-hidden rounded-md cursor-pointer">
-                <img
+                <Image
+                  width={400}
+                  height={400}
                   className="w-full h-full object-cover hover:scale-105 transition-all"
                   src={acomodacao.image}
                   alt=""

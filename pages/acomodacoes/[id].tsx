@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useAcomodacoes } from "../../hooks/useAcomodacoes";
@@ -35,7 +36,13 @@ const Acomodacao = () => {
           <h2>{acomodacao?.type}</h2>
         </div>
         <div className="w-full h-96">
-          <img className="w-full h-full object-cover" src={acomodacao?.image} />
+          <Image
+            className="w-full h-full object-cover"
+            src={acomodacao?.image ? acomodacao.image : ""}
+            alt=""
+            width={400}
+            height={400}
+          />
         </div>
       </div>
 
@@ -58,7 +65,13 @@ const Acomodacao = () => {
               {acomodacao?.name}, {acomodacao?.country}
             </h2>
             <div>
-              <img className="rounded-md" src={acomodacao?.image} alt="" />
+              <Image
+                className="rounded-md"
+                src={acomodacao?.image ? acomodacao?.image : ""}
+                alt=""
+                width={400}
+                height={400}
+              />
             </div>
             <div>
               <b className="text-2xl">R${acomodacao?.value}</b>{" "}
