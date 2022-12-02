@@ -6,7 +6,7 @@ export default function Home() {
     <div className="flex flex-col gap-6">
       <div className="w-full h-96 flex">
         <Image
-          width={400}
+          width={800}
           height={400}
           className="object-cover w-full h-full"
           src="https://www.pixelstalk.net/wp-content/uploads/images6/4K-Travel-Wallpaper-HD-Free-download.jpg"

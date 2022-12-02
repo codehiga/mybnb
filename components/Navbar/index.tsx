@@ -18,7 +18,15 @@ export const Navbar = () => {
   return (
     <div className="w-full min-h-20">
       <div className="flex w-full h-full justify-between items-center p-4">
-        <Link href="/" className="font-thin text-3xl">
+        <Link
+          onClick={() => {
+            if (menuMobile) {
+              setMenuMobile(!menuMobile);
+            }
+          }}
+          href="/"
+          className="font-thin text-3xl"
+        >
           bñb
         </Link>
         <ul className="hidden md:flex gap-4">
@@ -41,7 +49,11 @@ export const Navbar = () => {
         <ul className="flex flex-col gap-4">
           {itensMenu.map((item) => {
             return (
-              <Link key={item.nome} href={item.path}>
+              <Link
+                onClick={() => setMenuMobile(!menuMobile)}
+                key={item.nome}
+                href={item.path}
+              >
                 {item.nome}
               </Link>
             );

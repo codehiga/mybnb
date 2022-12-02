@@ -37,10 +37,10 @@ const Acomodacao = () => {
         </div>
         <div className="w-full h-96">
           <Image
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover md:rounded-md"
             src={acomodacao?.image ? acomodacao.image : ""}
             alt=""
-            width={400}
+            width={1280}
             height={400}
           />
         </div>
@@ -77,7 +77,7 @@ const Acomodacao = () => {
               <b className="text-2xl">R${acomodacao?.value}</b>{" "}
               <span className="font-thin">noite</span>
             </div>
-            <div className="flex justify-between gap-2">
+            <div className="flex flex-col md:flex-row justify-between gap-2">
               <span className="flex flex-col w-full border p-2">
                 <b>Checkin</b>
                 <input

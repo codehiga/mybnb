@@ -35,7 +35,7 @@ export default function Anunciar() {
   }
 
   return (
-    <div className="w-full max-w-7xl mx-auto">
+    <div className="w-full max-w-7xl mx-auto p-4">
       <form
         onSubmit={(e) => enviarAcomodacao(e)}
         className="grid grid-cols-1 gap-4"
