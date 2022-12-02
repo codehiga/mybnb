@@ -83,11 +83,7 @@ const Acomodacao = () => {
               <div className="flex flex-col md:flex-row justify-between gap-2">
                 <span className="flex flex-col w-full md:border md:p-2">
                   <b>Checkin</b>
-                  <input
-                    min={converteData(dataAtual)}
-                    value={converteData(dataAtual)}
-                    type="date"
-                  />
+                  <input min={converteData(dataAtual)} type="date" />
                 </span>
                 <span className="flex flex-col w-full md:border md:p-2">
                   <b>Checkout</b>

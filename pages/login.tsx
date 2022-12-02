@@ -1,27 +1,12 @@
-import axios from "axios";
-import Router from "next/router";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UsuarioContext } from "../context/UsuarioContext";
 
 function Login() {
   const [dadosLogin, setDadosLogin] = useState<any>();
+  const { logaUsuario } = useContext(UsuarioContext);
 
   function handleInputDadosLogin(e: any) {
-    console.log(dadosLogin);
     setDadosLogin({ ...dadosLogin, [e.name]: e.value });
-  }
-
-  async function logaUsuario() {
-    let usuario;
-    if (dadosLogin.email)
-      usuario = await axios.post("/api/usuario/login", dadosLogin);
-
-    if (usuario?.status == 200) {
-      localStorage.setItem("usuarioNome", usuario.data.nome);
-      localStorage.setItem("emailUsuario", usuario.data.email);
-      Router.push("/");
-    } else {
-      alert("Dados incorretos para login!");
-    }
   }
 
   return (
@@ -29,7 +14,7 @@ function Login() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          logaUsuario();
+          logaUsuario(dadosLogin);
         }}
         className="grid grid-cols-1 gap-2 max-w-xl mx-auto"
       >

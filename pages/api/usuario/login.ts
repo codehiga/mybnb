@@ -28,8 +28,6 @@ export default async function handler(
   if (response) {
     const senhaDB = response.senha;
     senhaCoincide = descriptografaSenha(body.senha, senhaDB);
-
-    console.log(response, senhaCoincide);
   }
 
   prisma.$disconnect();

@@ -1,19 +1,16 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { IUsuario, UsuarioContext } from "../../context/UsuarioContext";
 
 export const Navbar = () => {
   const [menuMobile, setMenuMobile] = useState(false);
-  const [usuarioLogado, setUsuarioLogado] = useState<any>();
+  const { resgataUsuarioLogado } = useContext(UsuarioContext);
+  const [usuarioLogado, setUsuarioLogado] = useState<IUsuario>();
 
   useEffect(() => {
-    let nomeUsuario = localStorage.getItem("usuarioNome");
-    let emailUsuario = localStorage.getItem("emailUsuario");
-
-    if (!usuarioLogado) {
-      setUsuarioLogado({
-        nome: nomeUsuario,
-        email: emailUsuario,
-      });
+    const response = resgataUsuarioLogado();
+    if (response && !usuarioLogado) {
+      setUsuarioLogado(JSON.parse(response));
     }
   }, [usuarioLogado]);
 
@@ -50,6 +47,8 @@ export const Navbar = () => {
               </Link>
             );
           })}
+          {!usuarioLogado && <Link href="/login">Login</Link>}
+          {!usuarioLogado && <Link href="/cadastro">Cadastrar</Link>}
         </ul>
         <b
           className="flex md:hidden"
