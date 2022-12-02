@@ -10,9 +10,23 @@
 
 input,
 textarea,
-select {
+select,
+button {
   all: unset;
   padding: 16px;
   border: solid 2px #ccc;
   border-radius: 5px;
+}
+
+button {
+  cursor: pointer;
+  text-align: center;
+  color: #c4c4c4;
+  transition: all 0.25s;
+}
+
+button:hover {
+  background: #ccc;
+  color: #fff;
+  transition: all 0.25s;
 }

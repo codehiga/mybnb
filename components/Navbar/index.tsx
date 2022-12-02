@@ -1,8 +1,21 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Navbar = () => {
   const [menuMobile, setMenuMobile] = useState(false);
+  const [usuarioLogado, setUsuarioLogado] = useState<any>();
+
+  useEffect(() => {
+    let nomeUsuario = localStorage.getItem("usuarioNome");
+    let emailUsuario = localStorage.getItem("emailUsuario");
+
+    if (!usuarioLogado) {
+      setUsuarioLogado({
+        nome: nomeUsuario,
+        email: emailUsuario,
+      });
+    }
+  }, [usuarioLogado]);
 
   const [itensMenu] = useState<any[]>([
     {

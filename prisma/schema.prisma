@@ -3,14 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
-// datasource db {
-//   provider = "postgresql"
-//   url      = env("DATABASE_URL")
-// }
 
 model acomodacao {
   id          String @id @default(cuid())
@@ -20,4 +15,19 @@ model acomodacao {
   value       String
   image       String
   description String
+}
+
+model reserva {
+  id           String @id @default(cuid())
+  usuario      String
+  checkin      String
+  checkout     String
+  idAcomodacao String
+}
+
+model usuario {
+  id    String @id @default(uuid())
+  nome  String
+  email String @unique
+  senha String
 }
