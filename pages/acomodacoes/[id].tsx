@@ -27,7 +27,7 @@ const Acomodacao = () => {
   }
 
   return (
-    <div className="w-full max-w-7xl mx-auto md:p-4 flex flex-col md:gap-4">
+    <div className="w-full max-w-7xl mx-auto md:p-4 flex flex-col md:flex-row md:gap-4">
       <div className="flex flex-col gap-4">
         <div className="p-4 md:p-0">
           <h1 className="text-3xl font-thin">
