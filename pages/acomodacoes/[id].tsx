@@ -28,13 +28,14 @@ const Acomodacao = () => {
 
   return (
     <div className="w-full max-w-7xl mx-auto md:p-4 flex flex-col md:gap-4">
-      <div className="flex flex-col-reverse md:flex-col">
+      <div className="flex flex-col gap-4">
         <div className="p-4 md:p-0">
           <h1 className="text-3xl font-thin">
             {acomodacao?.name}, {acomodacao?.country}
           </h1>
           <h2>{acomodacao?.type}</h2>
         </div>
+
         <div className="w-full h-96">
           <Image
             className="w-full h-full object-cover md:rounded-md"
@@ -44,10 +45,8 @@ const Acomodacao = () => {
             height={400}
           />
         </div>
-      </div>
 
-      <div className="flex w-full gap-4 md:gap-10 flex-col-reverse md:flex-row p-4 md:p-0">
-        <div className="flex-[2] text-justify flex flex-col gap-4">
+        <div className="text-justify flex flex-col gap-4 px-4">
           <div>{acomodacao?.description}</div>
           <div>{acomodacao?.description}</div>
           <div>{acomodacao?.description}</div>
@@ -59,7 +58,10 @@ const Acomodacao = () => {
           <div>{acomodacao?.description}</div>
           <div>{acomodacao?.description}</div>
         </div>
-        <div className="flex-1">
+      </div>
+
+      <div className="flex w-full gap-4 md:gap-10 flex-col-reverse md:flex-row p-4 md:p-0">
+        <div>
           <div className="md:sticky top-5 border rounded-md p-4 flex flex-col gap-2 pt-2">
             <h2 className="text-2xl">
               {acomodacao?.name}, {acomodacao?.country}
@@ -77,19 +79,25 @@ const Acomodacao = () => {
               <b className="text-2xl">R${acomodacao?.value}</b>{" "}
               <span className="font-thin">noite</span>
             </div>
-            <div className="flex flex-col md:flex-row justify-between gap-2">
+            <div className="flex flex-col justify-between gap-2">
               <span className="flex flex-col w-full md:border md:p-2">
-                <b>Checkin</b>
-                <input
-                  min={converteData(dataAtual)}
-                  value={converteData(dataAtual)}
-                  type="date"
-                />
+                <b>Nome</b>
+                <input required type="text" />
               </span>
-              <span className="flex flex-col w-full md:border md:p-2">
-                <b>Checkout</b>
-                <input min={converteData(dataAtual)} type="date" />
-              </span>
+              <div className="flex flex-col md:flex-row justify-between gap-2">
+                <span className="flex flex-col w-full md:border md:p-2">
+                  <b>Checkin</b>
+                  <input
+                    min={converteData(dataAtual)}
+                    value={converteData(dataAtual)}
+                    type="date"
+                  />
+                </span>
+                <span className="flex flex-col w-full md:border md:p-2">
+                  <b>Checkout</b>
+                  <input min={converteData(dataAtual)} type="date" />
+                </span>
+              </div>
             </div>
             <button className="w-full bg-sky-600 p-2 rounded-md text-white font-semibold">
               Reservar
