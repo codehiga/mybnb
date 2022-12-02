@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 
 export default function Anunciar() {
   const [paises, setPaises] = useState<any[]>([]);
-
   const [dadosFormulario, setDadosFormulario] = useState<any>();
 
   useEffect(() => {
@@ -20,7 +19,9 @@ export default function Anunciar() {
 
   async function enviarAcomodacao(e: any) {
     e.preventDefault();
-    console.log(dadosFormulario);
+    if (dadosFormulario.country == "default") {
+      return;
+    }
     const response = await axios.post("/api/acomodacoes/nova", dadosFormulario);
     if (response.status == 200) {
       Router.push("/");
@@ -58,7 +59,14 @@ export default function Anunciar() {
           name="value"
           placeholder="Valor por noite"
         />
-        <select name="country" onChange={(e) => handleCampos(e.currentTarget)}>
+        <select
+          defaultValue="default"
+          name="country"
+          onChange={(e) => handleCampos(e.currentTarget)}
+        >
+          <option value="default" disabled>
+            Selecione um país
+          </option>
           {paises.map((pais, i) => {
             return (
               <option key={i} value={pais.nome.abreviado}>

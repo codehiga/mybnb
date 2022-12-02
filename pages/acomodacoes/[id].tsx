@@ -95,7 +95,7 @@ const Acomodacao = () => {
                 </span>
               </div>
             </div>
-            <button className="w-full bg-sky-600 p-2 rounded-md text-white font-semibold">
+            <button className="bg-sky-600 p-2 rounded-md text-white font-semibold">
               Reservar
             </button>
           </div>
