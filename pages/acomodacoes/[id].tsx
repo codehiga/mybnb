@@ -78,7 +78,7 @@ const Acomodacao = () => {
               <span className="font-thin">noite</span>
             </div>
             <div className="flex flex-col md:flex-row justify-between gap-2">
-              <span className="flex flex-col w-full border p-2">
+              <span className="flex flex-col w-full md:border md:p-2">
                 <b>Checkin</b>
                 <input
                   min={converteData(dataAtual)}
@@ -86,7 +86,7 @@ const Acomodacao = () => {
                   type="date"
                 />
               </span>
-              <span className="flex flex-col w-full border p-2">
+              <span className="flex flex-col w-full md:border md:p-2">
                 <b>Checkout</b>
                 <input min={converteData(dataAtual)} type="date" />
               </span>
