@@ -2,9 +2,9 @@ import { PrismaClient } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export type IAcomodacao = {
-  id: string;
+  id?: string;
   name: string;
-  value: number;
+  value: string;
   type: string;
   country: string;
   image: string;
