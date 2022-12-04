@@ -54,9 +54,12 @@ export const Navbar = () => {
             </>
           )}
           {usuarioLogado && (
-            <li className="cursor-pointer" onClick={logoff}>
-              Sair
-            </li>
+            <>
+              <Link href="/minhas-reservas">Minhas reservas</Link>
+              <li className="cursor-pointer" onClick={logoff}>
+                Sair
+              </li>
+            </>
           )}
         </ul>
         <b

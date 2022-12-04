@@ -51,6 +51,7 @@ const Acomodacao = () => {
       checkin,
       checkout,
       idAcomodacao,
+      nomeAcomodacao: acomodacao.name,
       preco,
     };
 

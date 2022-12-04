@@ -18,12 +18,13 @@ model acomodacao {
 }
 
 model reserva {
-  id           String @id @default(cuid())
-  idUsuario    String
-  checkin      String
-  checkout     String
-  idAcomodacao String
-  preco        String
+  id             String @id @default(cuid())
+  idUsuario      String
+  checkin        String
+  checkout       String
+  idAcomodacao   String
+  nomeAcomodacao String
+  preco          String
 }
 
 model usuario {
