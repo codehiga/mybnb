@@ -10,7 +10,7 @@ export const Acomodacoes = () => {
       {acomodacoes?.map((acomodacao) => {
         return (
           <div key={acomodacao.id} className="flex flex-col">
-            <Link href={"/acomodacoes/" + acomodacao.id}>
+            <Link href={"/acomodacao/" + acomodacao.id}>
               <div className="w-full h-80 overflow-hidden rounded-md cursor-pointer">
                 <Image
                   width={400}

@@ -1,15 +1,22 @@
+import axios from "axios";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import Link from "next/link";
+import Router, { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useAcomodacoes } from "../../hooks/useAcomodacoes";
+import { useUsuario } from "../../hooks/useUsuario";
 import { IAcomodacao } from "../api/acomodacoes/lista";
+import { IReserva } from "../api/reserva/nova";
 import ReactStars from "react-stars";
 const Acomodacao = () => {
   const router = useRouter();
   const { id } = router.query;
   const { resgataAcomodacao } = useAcomodacoes();
+  const { usuario } = useUsuario();
   const [acomodacao, setAcomodacao] = useState<IAcomodacao>();
   const [dataAtual] = useState<Date>(new Date());
+  const [checkin, setCheckin] = useState<string>();
+  const [checkout, setCheckout] = useState<string>();
 
   useEffect(() => {
     resgata();
@@ -39,6 +46,33 @@ const Acomodacao = () => {
     }
   }
 
+  async function reservaAcomodacao(idAcomodacao?: string) {
+    if (!usuario || !checkin || !checkout || !idAcomodacao || !acomodacao)
+      return;
+
+    let preco: string = "";
+
+    let timestampCheckin = new Date(checkin);
+    let timestampCheckout = new Date(checkout);
+    let comparacao: number =
+      timestampCheckout.getTime() - timestampCheckin.getTime();
+    comparacao = comparacao / 1000;
+    preco = (parseInt(acomodacao.value) * (comparacao / 86400)).toString();
+
+    let reserva: IReserva = {
+      idUsuario: usuario.email,
+      checkin,
+      checkout,
+      idAcomodacao,
+      nomeAcomodacao: acomodacao.name,
+      preco,
+    };
+
+    const response = await axios.post("/api/reserva/nova", reserva);
+
+    if (response.status == 200) Router.push("/minhas-reservas");
+  }
+
   return (
     <div className="w-full max-w-7xl mx-auto md:p-4 flex flex-col md:flex-row md:gap-4">
       <div className="flex w-full flex-col gap-4">
@@ -58,7 +92,7 @@ const Acomodacao = () => {
             height={400}
           />
         </div>
-        {avaliaEstrela(acomodacao?.avaliation)}
+        {/* {avaliaEstrela(acomodacao?.avaliation)} */}
         <div className="text-justify flex flex-col gap-4 px-4 md:px-0">
           <div>{acomodacao?.description}</div>
           <div>{acomodacao?.description}</div>
@@ -96,17 +130,42 @@ const Acomodacao = () => {
               <div className="flex flex-col md:flex-row justify-between gap-2">
                 <span className="flex flex-col w-full md:border md:p-2">
                   <b>Checkin</b>
-                  <input min={converteData(dataAtual)} type="date" />
+                  <input
+                    onChange={(e) => setCheckin(e.target.value)}
+                    min={converteData(dataAtual)}
+                    type="date"
+                  />
                 </span>
                 <span className="flex flex-col w-full md:border md:p-2">
                   <b>Checkout</b>
-                  <input min={converteData(dataAtual)} type="date" />
+                  <input
+                    disabled={checkin ? false : true}
+                    min={checkin}
+                    onChange={(e) => setCheckout(e.target.value)}
+                    type="date"
+                  />
                 </span>
               </div>
             </div>
-            <button className="bg-sky-600 p-2 rounded-md text-white font-semibold">
+            <button
+              onClick={() => reservaAcomodacao(acomodacao?.id)}
+              disabled={usuario && checkin && checkout ? false : true}
+              className="bg-sky-600 p-2 rounded-md text-white font-semibold"
+            >
               Reservar
             </button>
+            {!usuario && (
+              <span className="text-center">
+                <Link href="/login">
+                  <small className="uppercase font-bold">Faça login </small>{" "}
+                </Link>
+                <small>ou </small>
+                <Link href="/cadastro">
+                  <small className="uppercase font-bold">crie uma conta</small>{" "}
+                </Link>
+                <small>para reservar.</small>
+              </span>
+            )}
           </div>
         </div>
       </div>
