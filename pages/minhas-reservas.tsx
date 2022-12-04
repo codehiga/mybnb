@@ -38,13 +38,12 @@ function MinhasReservas() {
             <div>ID da reserva: {reserva.id}</div>
             <div>
               <h2 className="text-2xl">
-                Reserva para {reserva.nomeAcomodacao}
+                <b>Reserva para:</b> {reserva.nomeAcomodacao}
               </h2>
             </div>
             <div>
-              <b>Data da reserva:</b>
-              <p>Checkin: {reserva.checkin.replaceAll("-", "/")}</p>
-              <p>Checkout: {reserva.checkout.replaceAll("-", "/")}</p>
+              <p>Data de checkin: {reserva.checkin.replaceAll("-", "/")}</p>
+              <p>Data de checkout: {reserva.checkout.replaceAll("-", "/")}</p>
             </div>
             <div>
               <b>Preço:</b>

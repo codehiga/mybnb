@@ -70,18 +70,31 @@ export const Navbar = () => {
         </b>
       </div>
       <div className={`${menuMobile ? "flex" : "hidden"} p-4 transition-all `}>
-        <ul className="flex flex-col gap-4">
+        <ul
+          onClick={() => setMenuMobile(!menuMobile)}
+          className="flex flex-col gap-4"
+        >
           {itensMenu.map((item) => {
             return (
-              <Link
-                onClick={() => setMenuMobile(!menuMobile)}
-                key={item.nome}
-                href={item.path}
-              >
+              <Link key={item.nome} href={item.path}>
                 {item.nome}
               </Link>
             );
           })}
+          {!usuarioLogado && (
+            <>
+              <Link href="/login">Login</Link>
+              <Link href="/cadastro">Cadastrar</Link>
+            </>
+          )}
+          {usuarioLogado && (
+            <>
+              <Link href="/minhas-reservas">Minhas reservas</Link>
+              <li className="cursor-pointer" onClick={logoff}>
+                Sair
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </div>

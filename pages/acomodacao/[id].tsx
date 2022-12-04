@@ -136,7 +136,7 @@ const Acomodacao = () => {
             </div>
             <button
               onClick={() => reservaAcomodacao(acomodacao?.id)}
-              disabled={usuario ? false : true}
+              disabled={usuario && checkin && checkout ? false : true}
               className="bg-sky-600 p-2 rounded-md text-white font-semibold"
             >
               Reservar
