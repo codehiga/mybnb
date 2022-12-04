@@ -14,6 +14,7 @@ export const UsuarioProvider = ({ children }: PropsWithChildren) => {
 
     if (usuarioDB.status == 200) {
       setUsuario(usuarioDB.data);
+      console.log(usuarioDB.data);
       localStorage.setItem(
         "usuario",
         JSON.stringify({
@@ -27,13 +28,18 @@ export const UsuarioProvider = ({ children }: PropsWithChildren) => {
     }
   }
 
+  function logoff() {
+    localStorage.removeItem("usuario");
+    Router.reload();
+  }
+
   function resgataUsuarioLogado() {
     return localStorage.getItem("usuario");
   }
 
   return (
     <UsuarioContext.Provider
-      value={{ usuario, logaUsuario, resgataUsuarioLogado }}
+      value={{ usuario, logaUsuario, resgataUsuarioLogado, logoff }}
     >
       {children}
     </UsuarioContext.Provider>
@@ -44,6 +50,7 @@ export interface IUsuarioContext {
   usuario: IUsuario | undefined;
   logaUsuario: (dadosUsuario: IUsuarioLogin) => Promise<void>;
   resgataUsuarioLogado: () => string | null;
+  logoff: () => void;
 }
 
 export interface IUsuario {

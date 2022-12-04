@@ -4,7 +4,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 export interface IReserva {
   id?: string;
   idAcomodacao: string;
-  usuario: string;
+  idUsuario: string;
   checkin: string;
   checkout: string;
 }

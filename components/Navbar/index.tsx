@@ -4,7 +4,7 @@ import { IUsuario, UsuarioContext } from "../../context/UsuarioContext";
 
 export const Navbar = () => {
   const [menuMobile, setMenuMobile] = useState(false);
-  const { resgataUsuarioLogado } = useContext(UsuarioContext);
+  const { resgataUsuarioLogado, logoff, usuario } = useContext(UsuarioContext);
   const [usuarioLogado, setUsuarioLogado] = useState<IUsuario>();
 
   useEffect(() => {
@@ -12,7 +12,7 @@ export const Navbar = () => {
     if (response && !usuarioLogado) {
       setUsuarioLogado(JSON.parse(response));
     }
-  }, [usuarioLogado]);
+  }, [usuario]);
 
   const [itensMenu] = useState<any[]>([
     {
@@ -47,8 +47,17 @@ export const Navbar = () => {
               </Link>
             );
           })}
-          {!usuarioLogado && <Link href="/login">Login</Link>}
-          {!usuarioLogado && <Link href="/cadastro">Cadastrar</Link>}
+          {!usuarioLogado && (
+            <>
+              <Link href="/login">Login</Link>
+              <Link href="/cadastro">Cadastrar</Link>
+            </>
+          )}
+          {usuarioLogado && (
+            <li className="cursor-pointer" onClick={logoff}>
+              Sair
+            </li>
+          )}
         </ul>
         <b
           className="flex md:hidden"

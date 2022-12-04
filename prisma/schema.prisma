@@ -19,7 +19,7 @@ model acomodacao {
 
 model reserva {
   id           String @id @default(cuid())
-  usuario      String
+  idUsuario    String
   checkin      String
   checkout     String
   idAcomodacao String
