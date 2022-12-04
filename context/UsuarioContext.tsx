@@ -1,6 +1,6 @@
 import axios from "axios";
 import Router from "next/router";
-import { createContext, PropsWithChildren, useState } from "react";
+import { createContext, PropsWithChildren, useEffect, useState } from "react";
 
 export const UsuarioContext = createContext<IUsuarioContext>(
   {} as IUsuarioContext
@@ -8,6 +8,15 @@ export const UsuarioContext = createContext<IUsuarioContext>(
 
 export const UsuarioProvider = ({ children }: PropsWithChildren) => {
   const [usuario, setUsuario] = useState<IUsuario>();
+
+  useEffect(() => {
+    let ususarioFromStorage = localStorage.getItem("usuario");
+
+    if (ususarioFromStorage) {
+      let usuarioLogado = JSON.parse(ususarioFromStorage);
+      setUsuario(usuarioLogado);
+    }
+  }, []);
 
   async function logaUsuario(dadosLogin: IUsuarioLogin) {
     let usuarioDB = await axios.post("/api/usuario/login", dadosLogin);

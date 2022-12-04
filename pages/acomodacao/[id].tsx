@@ -2,17 +2,20 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useAcomodacoes } from "../../hooks/useAcomodacoes";
+import { useUsuario } from "../../hooks/useUsuario";
 import { IAcomodacao } from "../api/acomodacoes/lista";
 
 const Acomodacao = () => {
   const router = useRouter();
   const { id } = router.query;
   const { resgataAcomodacao } = useAcomodacoes();
+  const { usuario } = useUsuario();
   const [acomodacao, setAcomodacao] = useState<IAcomodacao>();
   const [dataAtual] = useState<Date>(new Date());
 
   useEffect(() => {
     resgata();
+    console.log(usuario);
   }, [id]);
 
   function converteData(data: Date) {
@@ -25,6 +28,8 @@ const Acomodacao = () => {
       setAcomodacao(response);
     }
   }
+
+  async function reservaAcomodacao() {}
 
   return (
     <div className="w-full max-w-7xl mx-auto md:p-4 flex flex-col md:flex-row md:gap-4">
