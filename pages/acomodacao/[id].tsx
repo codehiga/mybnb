@@ -1,9 +1,12 @@
+import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useAcomodacoes } from "../../hooks/useAcomodacoes";
 import { useUsuario } from "../../hooks/useUsuario";
 import { IAcomodacao } from "../api/acomodacoes/lista";
+import { IReserva } from "../api/reserva/nova";
 
 const Acomodacao = () => {
   const router = useRouter();
@@ -12,10 +15,11 @@ const Acomodacao = () => {
   const { usuario } = useUsuario();
   const [acomodacao, setAcomodacao] = useState<IAcomodacao>();
   const [dataAtual] = useState<Date>(new Date());
+  const [checkin, setCheckin] = useState<string>();
+  const [checkout, setCheckout] = useState<string>();
 
   useEffect(() => {
     resgata();
-    console.log(usuario);
   }, [id]);
 
   function converteData(data: Date) {
@@ -29,7 +33,17 @@ const Acomodacao = () => {
     }
   }
 
-  async function reservaAcomodacao() {}
+  async function reservaAcomodacao(idAcomodacao?: string) {
+    if (!usuario || !checkin || !checkout || !idAcomodacao) return;
+    let reserva: IReserva = {
+      idUsuario: usuario.email,
+      checkin,
+      checkout,
+      idAcomodacao,
+    };
+    const response = await axios.post("/api/reserva/nova", reserva);
+    console.log(response.data);
+  }
 
   return (
     <div className="w-full max-w-7xl mx-auto md:p-4 flex flex-col md:flex-row md:gap-4">
@@ -88,17 +102,42 @@ const Acomodacao = () => {
               <div className="flex flex-col md:flex-row justify-between gap-2">
                 <span className="flex flex-col w-full md:border md:p-2">
                   <b>Checkin</b>
-                  <input min={converteData(dataAtual)} type="date" />
+                  <input
+                    onChange={(e) => setCheckin(e.target.value)}
+                    min={converteData(dataAtual)}
+                    type="date"
+                  />
                 </span>
                 <span className="flex flex-col w-full md:border md:p-2">
                   <b>Checkout</b>
-                  <input min={converteData(dataAtual)} type="date" />
+                  <input
+                    disabled={checkin ? false : true}
+                    min={checkin}
+                    onChange={(e) => setCheckout(e.target.value)}
+                    type="date"
+                  />
                 </span>
               </div>
             </div>
-            <button className="bg-sky-600 p-2 rounded-md text-white font-semibold">
+            <button
+              onClick={() => reservaAcomodacao(acomodacao?.id)}
+              disabled={usuario ? false : true}
+              className="bg-sky-600 p-2 rounded-md text-white font-semibold"
+            >
               Reservar
             </button>
+            {!usuario && (
+              <span className="text-center">
+                <Link href="/login">
+                  <small className="uppercase font-bold">Faça login </small>{" "}
+                </Link>
+                <small>ou </small>
+                <Link href="/cadastro">
+                  <small className="uppercase font-bold">crie uma conta</small>{" "}
+                </Link>
+                <small>para reservar.</small>
+              </span>
+            )}
           </div>
         </div>
       </div>

@@ -64,6 +64,7 @@ export interface IUsuarioContext {
 
 export interface IUsuario {
   nome: string;
+  username: string;
   email: string;
 }
 
