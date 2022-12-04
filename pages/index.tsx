@@ -1,5 +1,27 @@
 import Image from "next/image";
+
 import { Acomodacoes } from "../components/Acomodacoes";
+
+
+interface IUsuario {
+  nome:string;
+  email:string;
+}
+
+
+function resgataUsuarioLogado() {
+  if (typeof window !== 'undefined') {
+    let userString = localStorage.getItem("usuario")
+    if(userString!= null){
+    let user = JSON.parse(userString);
+    return user.nome;
+
+  }
+   
+  }
+  
+}
+
 
 export default function Home() {
   return (
@@ -15,7 +37,7 @@ export default function Home() {
       </div>
       {/* <BarraTipoAcomodacao /> */}
       <div className="w-full max-w-7xl mx-auto flex flex-col gap-4 p-4">
-        <h1 className="text-2xl font-semibold">Para onde vamos dessa vez?</h1>
+        <h1 className="text-2xl font-semibold">Olá {resgataUsuarioLogado()}, para onde vamos dessa vez?</h1>
         <Acomodacoes />
       </div>
     </div>

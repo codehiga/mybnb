@@ -9,6 +9,7 @@ export type IAcomodacao = {
   country: string;
   image: string;
   description: string;
+  avaliation:number;
 };
 
 export default async function handler(
