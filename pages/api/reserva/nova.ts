@@ -7,6 +7,7 @@ export interface IReserva {
   idUsuario: string;
   checkin: string;
   checkout: string;
+  preco: string;
 }
 
 export default async function handler(

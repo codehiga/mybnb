@@ -23,6 +23,7 @@ model reserva {
   checkin      String
   checkout     String
   idAcomodacao String
+  preco        String
 }
 
 model usuario {

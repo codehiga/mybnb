@@ -34,13 +34,26 @@ const Acomodacao = () => {
   }
 
   async function reservaAcomodacao(idAcomodacao?: string) {
-    if (!usuario || !checkin || !checkout || !idAcomodacao) return;
+    if (!usuario || !checkin || !checkout || !idAcomodacao || !acomodacao)
+      return;
+
+    let preco: string = "";
+
+    let timestampCheckin = new Date(checkin);
+    let timestampCheckout = new Date(checkout);
+    let comparacao: number =
+      timestampCheckout.getTime() - timestampCheckin.getTime();
+    comparacao = comparacao / 1000;
+    preco = (parseInt(acomodacao.value) * (comparacao / 86400)).toString();
+
     let reserva: IReserva = {
       idUsuario: usuario.email,
       checkin,
       checkout,
       idAcomodacao,
+      preco,
     };
+
     const response = await axios.post("/api/reserva/nova", reserva);
     console.log(response.data);
   }
