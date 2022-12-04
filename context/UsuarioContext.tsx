@@ -23,7 +23,6 @@ export const UsuarioProvider = ({ children }: PropsWithChildren) => {
 
     if (usuarioDB.status == 200) {
       setUsuario(usuarioDB.data);
-      console.log(usuarioDB.data);
       localStorage.setItem(
         "usuario",
         JSON.stringify({

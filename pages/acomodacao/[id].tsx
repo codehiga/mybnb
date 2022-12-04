@@ -56,7 +56,6 @@ const Acomodacao = () => {
     };
 
     const response = await axios.post("/api/reserva/nova", reserva);
-    console.log(response.data);
   }
 
   return (
