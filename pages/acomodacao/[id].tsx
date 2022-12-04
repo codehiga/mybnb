@@ -1,7 +1,7 @@
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useAcomodacoes } from "../../hooks/useAcomodacoes";
 import { useUsuario } from "../../hooks/useUsuario";
@@ -56,6 +56,8 @@ const Acomodacao = () => {
     };
 
     const response = await axios.post("/api/reserva/nova", reserva);
+
+    if (response.status == 200) Router.push("/minhas-reservas");
   }
 
   return (
