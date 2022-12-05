@@ -15,14 +15,15 @@ model acomodacao {
   value       String
   image       String
   description String
+  avaliation  String?
 }
 
 model reserva {
   id             String @id @default(cuid())
-  idUsuario      String
   checkin        String
   checkout       String
   idAcomodacao   String
+  idUsuario      String
   nomeAcomodacao String
   preco          String
 }

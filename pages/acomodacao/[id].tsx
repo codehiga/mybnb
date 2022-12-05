@@ -92,7 +92,7 @@ const Acomodacao = () => {
             height={400}
           />
         </div>
-        {/* {avaliaEstrela(acomodacao?.avaliation)} */}
+         {avaliaEstrela(acomodacao?.avaliation || 0 )} 
         <div className="text-justify flex flex-col gap-4 px-4 md:px-0">
           <div>{acomodacao?.description}</div>
           <div>{acomodacao?.description}</div>
