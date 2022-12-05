@@ -6,11 +6,15 @@ export const Navbar = () => {
   const [menuMobile, setMenuMobile] = useState(false);
   const { resgataUsuarioLogado, logoff, usuario } = useContext(UsuarioContext);
   const [usuarioLogado, setUsuarioLogado] = useState<IUsuario>();
+  const [logado, setLogado] = useState<boolean>(false);
 
   useEffect(() => {
     const response = resgataUsuarioLogado();
     if (response && !usuarioLogado) {
       setUsuarioLogado(JSON.parse(response));
+      setLogado(true);
+    } else {
+      setLogado(false);
     }
   }, [usuario]);
 
@@ -18,11 +22,12 @@ export const Navbar = () => {
     {
       nome: "Anunciar acomodação",
       path: "/anunciar",
+      logado: true,
     },
-    {
-      nome: "Ajuda",
-      path: "/ajuda",
-    },
+    // {
+    //   nome: "Ajuda",
+    //   path: "/ajuda",
+    // },
   ]);
 
   return (
@@ -40,13 +45,13 @@ export const Navbar = () => {
           bñb
         </Link>
         <ul className="hidden md:flex gap-4">
-          {itensMenu.map((item) => {
+          {/* {itensMenu.map((item) => {
             return (
               <Link key={item.nome} href={item.path}>
                 {item.nome}
               </Link>
             );
-          })}
+          })} */}
           {!usuarioLogado && (
             <>
               <Link href="/login">Login</Link>
@@ -55,6 +60,7 @@ export const Navbar = () => {
           )}
           {usuarioLogado && (
             <>
+              <Link href="/anunciar">Anunciar</Link>
               <Link href="/minhas-reservas">Minhas reservas</Link>
               <li className="cursor-pointer" onClick={logoff}>
                 Sair

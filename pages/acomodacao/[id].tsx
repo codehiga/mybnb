@@ -48,6 +48,7 @@ const Acomodacao = () => {
 
     let reserva: IReserva = {
       idUsuario: usuario.email,
+      donoAcomodacao: acomodacao.idUsuario,
       checkin,
       checkout,
       idAcomodacao,
@@ -56,6 +57,16 @@ const Acomodacao = () => {
     };
 
     const response = await axios.post("/api/reserva/nova", reserva);
+
+    const responseEmail = await axios.post("/api/email/envia", {
+      email: reserva.idUsuario,
+      mensagem: `<h1>Acomodação reservada: ${reserva.nomeAcomodacao},</h1> </br> <h2>com checkin programado para ${reserva.checkin} e checkout para ${reserva.checkout}.</h2> <h2>Valor total: R$${reserva.preco}</h2>`,
+    });
+
+    const responseEmailReservado = await axios.post("/api/email/envia", {
+      email: reserva.donoAcomodacao,
+      mensagem: `<h1>Sua acomodação foi reservada: ${reserva.nomeAcomodacao},</h1> </br> <h2>com checkin programado para ${reserva.checkin} e checkout para ${reserva.checkout}.</h2> <h2>Valor total: R$${reserva.preco}</h2>`,
+    });
 
     if (response.status == 200) Router.push("/minhas-reservas");
   }

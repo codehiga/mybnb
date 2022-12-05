@@ -65,6 +65,8 @@ function MinhasReservas() {
           </div>
         );
       })}
+
+      {reservas.length < 1 && <h1>Não há reservas no momento!</h1>}
     </div>
   );
 }

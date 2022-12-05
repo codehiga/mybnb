@@ -10,6 +10,7 @@ datasource db {
 model acomodacao {
   id          String @id @default(cuid())
   name        String
+  idUsuario   String
   type        String
   country     String
   value       String
@@ -20,6 +21,7 @@ model acomodacao {
 model reserva {
   id             String @id @default(cuid())
   idUsuario      String
+  donoAcomodacao String
   checkin        String
   checkout       String
   idAcomodacao   String
