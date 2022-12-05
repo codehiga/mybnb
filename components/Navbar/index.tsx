@@ -80,13 +80,13 @@ export const Navbar = () => {
           onClick={() => setMenuMobile(!menuMobile)}
           className="flex flex-col gap-4"
         >
-          {itensMenu.map((item) => {
+          {/* {itensMenu.map((item) => {
             return (
               <Link key={item.nome} href={item.path}>
                 {item.nome}
               </Link>
             );
-          })}
+          })} */}
           {!usuarioLogado && (
             <>
               <Link href="/login">Login</Link>
@@ -95,6 +95,7 @@ export const Navbar = () => {
           )}
           {usuarioLogado && (
             <>
+              <Link href="/anunciar">Anunciar</Link>
               <Link href="/minhas-reservas">Minhas reservas</Link>
               <li className="cursor-pointer" onClick={logoff}>
                 Sair
