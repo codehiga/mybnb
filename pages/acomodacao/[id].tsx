@@ -31,6 +31,7 @@ const Acomodacao = () => {
         value={avaliacao}
           count={5}
           size={24}
+          edit ={false}
           color2={'#ffd700'} />
       </div>
     )

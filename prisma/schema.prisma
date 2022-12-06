@@ -26,6 +26,7 @@ model reserva {
   idUsuario      String
   nomeAcomodacao String
   preco          String
+  avaliacao      String?
 }
 
 model usuario {
