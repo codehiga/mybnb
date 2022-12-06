@@ -1,10 +1,12 @@
 import axios from "axios";
 import Router from "next/router";
 import { useEffect, useState } from "react";
+import { useUsuario } from "../hooks/useUsuario";
 
 export default function Anunciar() {
   const [paises, setPaises] = useState<any[]>([]);
   const [dadosFormulario, setDadosFormulario] = useState<any>();
+  const { usuario } = useUsuario();
 
   useEffect(() => {
     resgataPaises();
@@ -22,9 +24,15 @@ export default function Anunciar() {
     if (dadosFormulario.country == "default") {
       return;
     }
-    const response = await axios.post("/api/acomodacoes/nova", dadosFormulario);
-    if (response.status == 200) {
-      Router.push("/");
+    if (usuario) {
+      dadosFormulario.idUsuario = usuario.email;
+      const response = await axios.post(
+        "/api/acomodacoes/nova",
+        dadosFormulario
+      );
+      if (response.status == 200) {
+        Router.push("/");
+      }
     }
   }
 

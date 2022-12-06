@@ -3,6 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 export type IAcomodacao = {
   id?: string;
+  idUsuario: string;
   name: string;
   value: string;
   type: string;
