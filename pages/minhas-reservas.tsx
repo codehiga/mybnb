@@ -29,22 +29,19 @@ function MinhasReservas() {
       avalia: avaliacao.toString()
     }
     const response = await axios.patch("/api/reserva/" + id , body);
-    Router.reload();
+    alert("Avaliação enviada, muito obrigade")
     };
   
   async function deletaReserva(id: string) {
-
     const response = await axios.delete("/api/reserva/" + id);
     Router.reload();
   }
-const avaliacaoMudou =(novaAvaliacao: number) =>{
-//  avaliaReserva(novaAvaliacao);
-}
+
 
   
   function avaliaEstrela(nomeAcomodacao:string, avaliacao:string, id:string){
     var avalia: number = +avaliacao;
-    console.log(avaliacaoMudou);
+   
     return (
       <div>
        <p>Deixe sua avaliação para {nomeAcomodacao}</p>
