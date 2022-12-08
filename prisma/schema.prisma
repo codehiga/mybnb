@@ -16,6 +16,7 @@ model acomodacao {
   value       String
   image       String
   description String
+  avaliation  String?
 }
 
 model reserva {
@@ -27,6 +28,7 @@ model reserva {
   idAcomodacao   String
   nomeAcomodacao String
   preco          String
+  avaliacao      String?
 }
 
 model usuario {

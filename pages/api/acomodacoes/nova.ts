@@ -1,10 +1,9 @@
-import { PrismaClient } from "@prisma/client";
+import { acomodacao, PrismaClient } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { IAcomodacao } from "./lista";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<IAcomodacao>
+  res: NextApiResponse<acomodacao>
 ) {
   let body = req.body;
   let prisma = new PrismaClient();

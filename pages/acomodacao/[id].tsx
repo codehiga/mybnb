@@ -7,7 +7,7 @@ import { useAcomodacoes } from "../../hooks/useAcomodacoes";
 import { useUsuario } from "../../hooks/useUsuario";
 import { IAcomodacao } from "../api/acomodacoes/lista";
 import { IReserva } from "../api/reserva/nova";
-
+import ReactStars from "react-stars";
 const Acomodacao = () => {
   const router = useRouter();
   const { id } = router.query;
@@ -22,6 +22,20 @@ const Acomodacao = () => {
     resgata();
   }, [id]);
 
+
+   function avaliaEstrela(avaliacao: number | 0){
+    return (
+      <div>
+       <p>Avaliação média da acomodação</p>
+        <ReactStars
+        value={avaliacao}
+          count={5}
+          size={24}
+          edit ={false}
+          color2={'#ffd700'} />
+      </div>
+    )
+  }
   function converteData(data: Date) {
     return data.toISOString().split("T")[0];
   }
@@ -90,7 +104,7 @@ const Acomodacao = () => {
             height={400}
           />
         </div>
-
+         {avaliaEstrela(acomodacao?.avaliation || 0 )} 
         <div className="text-justify flex flex-col gap-4 px-4 md:px-0">
           <div>{acomodacao?.description}</div>
           <div>{acomodacao?.description}</div>
