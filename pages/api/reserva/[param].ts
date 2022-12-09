@@ -18,7 +18,18 @@ export default async function handler(
       }
     });
   }
-
+  if (req.method == "PATCH") {
+    const response = await prisma.reserva.update({
+      where: {
+        id: param?.toString(),
+      },
+      data: {
+        avaliacao: req.body.avalia,
+      },
+    });
+    
+  
+  }
   if (req.method == "DELETE") {
     await prisma.reserva.delete({
       where: {
