@@ -228,6 +228,8 @@
   version "18.0.9"
   resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-18.0.9.tgz"
   integrity sha512-qnVvHxASt/H7i+XG1U1xMiY5t+IHcPGUK7TDMDzom08xa7e86eCeKOiLZezwCKVxJn6NEiiy2ekgX8aQssjIKg==
+<<<<<<< HEAD
+=======
   dependencies:
     "@types/react" "*"
 
@@ -235,6 +237,7 @@
   version "2.2.1"
   resolved "https://registry.npmjs.org/@types/react-stars/-/react-stars-2.2.1.tgz"
   integrity sha512-x0Z7+OsImFfBbHpLm/o3Z/q9qbapQbaSbKkozSIJXs6OAkFW5keA4Qw4MOjocdmhPPUYI6DDVSB0NOm0QmY+Xg==
+>>>>>>> a1a093494cf2877164f8722de17e4c492106808a
   dependencies:
     "@types/react" "*"
 
@@ -1596,7 +1599,11 @@ node-releases@^2.0.6:
 
 nodemailer@^6.8.0:
   version "6.8.0"
+<<<<<<< HEAD
+  resolved "https://registry.npmjs.org/nodemailer/-/nodemailer-6.8.0.tgz"
+=======
   resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.8.0.tgz#804bcc5256ee5523bc914506ee59f8de8f0b1cd5"
+>>>>>>> a1a093494cf2877164f8722de17e4c492106808a
   integrity sha512-EjYvSmHzekz6VNkNd12aUqAco+bOkRe3Of5jVhltqKhEsjw/y0PYPJfp83+s9Wzh1dspYAkUW/YNQ350NATbSQ==
 
 normalize-path@^3.0.0, normalize-path@~3.0.0:
@@ -1879,11 +1886,14 @@ react-is@^16.13.1:
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+<<<<<<< HEAD
+=======
 react-stars@^2.2.5:
   version "2.2.5"
   resolved "https://registry.npmjs.org/react-stars/-/react-stars-2.2.5.tgz"
   integrity sha512-O//KS6Z9RZnUOU/r+3+wxCzNalVn/wEWIcbAQFRV3dw8WbV+ys/kgcpBPijqTiNpHGrcwZdtb/7wF/UVem20CQ==
 
+>>>>>>> a1a093494cf2877164f8722de17e4c492106808a
 react@18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"

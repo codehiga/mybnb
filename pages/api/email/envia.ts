@@ -29,7 +29,6 @@ export default async function handler(
     from: "servico@daikokurh.com.br",
     to: [destinatario],
     subject: "Acomodação reservada",
-    text: mensagem,
     html: mensagem,
   });
 
