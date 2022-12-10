@@ -8,19 +8,20 @@ datasource db {
 }
 
 model acomodacao {
-  id          String @id @default(cuid())
-  name        String
-  idUsuario   String
-  type        String
-  country     String
-  value       String
-  image       String
-  description String
-  avaliation  String?
+  id           String @id @default(cuid())
+  name         String
+  idUsuario    String
+  type         String
+  country      String
+  value        String
+  image        String
+  description  String
+  avaliation   Float  @default(0)
+  qtAvaliation Int    @default(0)
 }
 
 model reserva {
-  id             String @id @default(cuid())
+  id             String  @id @default(cuid())
   idUsuario      String
   donoAcomodacao String
   checkin        String
@@ -28,7 +29,8 @@ model reserva {
   idAcomodacao   String
   nomeAcomodacao String
   preco          String
-  avaliacao      String?
+  avaliacao      Float   @default(0)
+  avalidado      Boolean @default(false)
 }
 
 model usuario {

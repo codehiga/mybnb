@@ -3,11 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import Router, { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import ReactStars from "react-stars";
 import { useAcomodacoes } from "../../hooks/useAcomodacoes";
 import { useUsuario } from "../../hooks/useUsuario";
 import { IAcomodacao } from "../api/acomodacoes/lista";
 import { IReserva } from "../api/reserva/nova";
-import ReactStars from "react-stars";
 const Acomodacao = () => {
   const router = useRouter();
   const { id } = router.query;
@@ -23,12 +23,16 @@ const Acomodacao = () => {
   }, [id]);
 
 
-   function avaliaEstrela(avaliacao: number | 0){
+  function avaliaEstrela(){
+
+ 
+    console.log(acomodacao?.avaliation)
+
     return (
       <div>
        <p>Avaliação média da acomodação</p>
         <ReactStars
-        value={avaliacao}
+          value={acomodacao?.avaliation}
           count={5}
           size={24}
           edit ={false}
@@ -36,6 +40,7 @@ const Acomodacao = () => {
       </div>
     )
   }
+  
   function converteData(data: Date) {
     return data.toISOString().split("T")[0];
   }
@@ -104,7 +109,7 @@ const Acomodacao = () => {
             height={400}
           />
         </div>
-         {avaliaEstrela(acomodacao?.avaliation || 0 )} 
+        {avaliaEstrela()} 
         <div className="text-justify flex flex-col gap-4 px-4 md:px-0">
           <div>{acomodacao?.description}</div>
           <div>{acomodacao?.description}</div>

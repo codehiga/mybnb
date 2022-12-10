@@ -26,11 +26,11 @@ function MinhasReservas() {
   }
   async function avaliaReserva(avaliacao:number,id: string) {
     const body={
-      avalia: avaliacao.toString()
+      avaliacao
     }
-    const response = await axios.patch("/api/reserva/" + id , body);
+    await axios.patch("/api/reserva/" + id , body);
     alert("Avaliação enviada, muito obrigade")
-    };
+  };
   
   async function deletaReserva(id: string) {
     const response = await axios.delete("/api/reserva/" + id);
@@ -39,7 +39,7 @@ function MinhasReservas() {
 
 
   
-  function avaliaEstrela(nomeAcomodacao:string, avaliacao:string, id:string){
+  function avaliaEstrela(nomeAcomodacao:string, avaliacao:number, id:string){
     var avalia: number = +avaliacao;
    
     return (
@@ -78,8 +78,7 @@ function MinhasReservas() {
               <p>R$ {reserva.preco}</p>
             </div>
             <div></div>
-            {avaliaEstrela(reserva.nomeAcomodacao, reserva?.avaliacao||'0', reserva.id)}
-            
+            {avaliaEstrela(reserva.nomeAcomodacao, reserva.avaliacao, reserva.id)}
             <div className="flex justify-end gap-4">
               <button
                 onClick={(e) => deletaReserva(reserva.id)}

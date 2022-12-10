@@ -26,6 +26,7 @@ export default function Anunciar() {
     }
     if (usuario) {
       dadosFormulario.idUsuario = usuario.email;
+      dadosFormulario.avaliation = 0;
       const response = await axios.post(
         "/api/acomodacoes/nova",
         dadosFormulario

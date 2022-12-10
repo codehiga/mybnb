@@ -7,6 +7,7 @@ export default async function handler(
 ) {
   let body = req.body;
   let prisma = new PrismaClient();
+  body.avaliation = 0;
   const response = await prisma.acomodacao.create({
     data: body,
   });
